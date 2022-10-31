@@ -47,6 +47,15 @@ func kubernetesAuthBackendRoleResource() *schema.Resource {
 				return strings.Trim(v.(string), "/")
 			},
 		},
+		"token_policies": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Elem: &schema.Schema{
+				Type: schema.TypeString,
+			},
+			Description:   "Policies to be set on tokens issued using this role.",
+			ConflictsWith: []string{"policies"},
+		},
 
 		// Deprecated
 		"policies": {
